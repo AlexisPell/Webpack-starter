@@ -109,8 +109,7 @@ module.exports = {
 	context: path.resolve(__dirname, 'src'),
 	mode: 'development',
 	entry: {
-		main: ['@babel/polyfill', './index.jsx'],
-		analytics: './analytics.ts',
+		main: ['@babel/polyfill', './index.js'],
 	},
 	output: {
 		filename: filename('js'),
@@ -173,11 +172,11 @@ module.exports = {
 				test: /\.csv$/,
 				use: ['csv-loader'],
 			},
-			// Babel Javascript
+			// Javascript
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: jsLoaders(),
+				use: { loader: 'babel-loader' },
 			},
 			// Typescript
 			{
@@ -200,35 +199,3 @@ module.exports = {
 		],
 	},
 }
-
-// // Typescript
-// {
-//   test: /\.ts$/,
-//   exclude: /node_modules/,
-//   loader: {
-//     loader: 'babel-loader',
-//     options: babelOptions('@babel/preset-typescript'),
-//   },
-// },
-// // React
-// {
-//   test: /\.jsx$/,
-//   exclude: /node_modules/,
-//   loader: {
-//     loader: 'babel-loader',
-//     options: babelOptions('@babel/preset-react'),
-//   },
-// },
-
-// // Typescript
-// {
-//   test: /\.ts$/,
-//   exclude: /node_modules/,
-//   use: jsLoaders('@babel/preset-typescript'),
-// },
-// // React
-// {
-//   test: /\.jsx$/,
-//   exclude: /node_modules/,
-//   use: jsLoaders('@babel/preset-react'),
-// },
